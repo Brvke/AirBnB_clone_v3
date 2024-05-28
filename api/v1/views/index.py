@@ -30,4 +30,3 @@ def get_No_objects():
         "places": storage.count(Place)
     }
     return jsonify(stats)
-
