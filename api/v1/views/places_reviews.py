@@ -6,8 +6,6 @@ from models.user import User
 from models import storage
 from api.v1.views import app_views
 from flask import abort, jsonify, make_response, request
-from flasgger.utils import swag_from
-
 
 @app_views.route('/places/<place_id>/reviews', methods=['GET'],
                  strict_slashes=False)
@@ -24,7 +22,6 @@ def get_reviews(place_id):
 
     return jsonify(reviews)
 
-
 @app_views.route('/reviews/<review_id>', methods=['GET'], strict_slashes=False)
 def get_review(review_id):
     """
@@ -35,7 +32,6 @@ def get_review(review_id):
         abort(404)
 
     return jsonify(review.to_dict())
-
 
 @app_views.route('/reviews/<review_id>', methods=['DELETE'],
                  strict_slashes=False)
@@ -53,7 +49,6 @@ def delete_review(review_id):
     storage.save()
 
     return make_response(jsonify({}), 200)
-
 
 @app_views.route('/places/<place_id>/reviews', methods=['POST'],
                  strict_slashes=False)
@@ -85,7 +80,6 @@ def post_review(place_id):
     instance = Review(**data)
     instance.save()
     return make_response(jsonify(instance.to_dict()), 201)
-
 
 @app_views.route('/reviews/<review_id>', methods=['PUT'], strict_slashes=False)
 def put_review(review_id):
